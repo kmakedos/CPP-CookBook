@@ -4,13 +4,8 @@
 // Copyright (c) 2020 All rights reserved.
 //
 
-#ifndef CPP_COOKBOOK_NUMBERS_H
-#define CPP_COOKBOOK_NUMBERS_H
+#include "test_numbers.h"
 
-
-class Numbers {
-
-};
-
-
-#endif //CPP_COOKBOOK_NUMBERS_H
+long test_numbers::hex2int(const std::string &hexStr) {
+    return -1;
+}
