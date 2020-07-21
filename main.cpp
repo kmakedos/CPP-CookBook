@@ -4,6 +4,5 @@
 #include "numbers.h"
 
 int main(){
-   Numbers *nm = new Numbers();
-   nm->hex2int(0);
+   return hex2int(0);
 }
