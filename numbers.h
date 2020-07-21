@@ -8,7 +8,7 @@
 #define CPP_COOKBOOK_TEST_NUMBERS_H
 #include <string>
 
-class test_numbers {
+class Numbers {
 private:
 
 public:
