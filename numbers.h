@@ -7,9 +7,21 @@
 #ifndef CPP_COOKBOOK_TEST_NUMBERS_H
 #define CPP_COOKBOOK_TEST_NUMBERS_H
 #include <string>
+#include <boost/lexical_cast.hpp>
+
 
 long hex2int(const std::string &hexStr);
 std::string int2hex(const int n);
-
+template<typename T>
+bool isValid(const std::string& num){
+    bool res = true;
+    try{
+        T tmp = boost::lexical_cast<T>(num);
+    }
+    catch(boost::bad_lexical_cast &e){
+        res = false;
+    }
+    return res;
+}
 
 #endif //CPP_COOKBOOK_TEST_NUMBERS_H
