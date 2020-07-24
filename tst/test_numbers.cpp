@@ -32,4 +32,13 @@ BOOST_AUTO_TEST_SUITE(testNumbers)
         BOOST_CHECK_EQUAL(int2hex(39284), "0x9974");
         BOOST_CHECK_EQUAL(int2hex(-111), "0xffffff91");
     }
+    BOOST_AUTO_TEST_CASE(TEST_STRING2NUM){
+        BOOST_CHECK_EQUAL(isValid<int>("0"), true);
+        BOOST_CHECK_EQUAL(isValid<int>("-1"), true);
+        BOOST_CHECK_EQUAL(isValid<int>("- 0"), false);
+        BOOST_CHECK_EQUAL(isValid<int>("+23"), true);
+        BOOST_CHECK_EQUAL(isValid<float>("-0.44"), true);
+        BOOST_CHECK_EQUAL(isValid<float>("+0. 44"), false);
+        BOOST_CHECK_EQUAL(isValid<float>("0.44+"), false);
+    }
 BOOST_AUTO_TEST_SUITE_END()
