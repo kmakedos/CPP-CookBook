@@ -3,8 +3,9 @@
 // Email: kostas.makedos@gmail.com
 // Copyright (c) 2020 All rights reserved.
 //
-#include <sstream>
-#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <boost/cast.hpp>
 #include "numbers.h"
 
 long hex2int(const std::string &hexStr) {
@@ -22,3 +23,18 @@ std::string int2hex(const int n) {
     s << std::showbase << std::hex << n;
     return s.str();
 }
+
+int compareDoubles(double alpha, double beta, double epsilon){
+    double diff = alpha-beta;
+    double absdiff = fabs(diff);
+    if (absdiff < epsilon || absdiff == 0.0){
+        return 0;
+    } else {
+        return (diff/absdiff);
+    }
+}
+
+short cast2short(int x){
+    return boost::numeric_cast<short>(x);
+}
+
