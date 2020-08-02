@@ -6,6 +6,7 @@
 
 #ifndef CPP_COOKBOOK_TEST_NUMBERS_H
 #define CPP_COOKBOOK_TEST_NUMBERS_H
+#include <iostream>
 #include <string>
 #include <boost/lexical_cast.hpp>
 
