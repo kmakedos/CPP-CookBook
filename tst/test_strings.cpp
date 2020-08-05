@@ -48,5 +48,24 @@ BOOST_AUTO_TEST_SUITE(testStrings)
         BOOST_CHECK_GE(final_len, init_len);
         BOOST_CHECK_GE(final_cap, init_cap);
     }
+    BOOST_AUTO_TEST_CASE(TEST_STRINGREVERSE) {
+        std::string tst = "Solop";
+        reverseString(tst);
+        BOOST_CHECK(tst == "poloS");
+        std::string tst2;
+        reverseAndCopyString(tst, tst2);
+        BOOST_CHECK(tst2 == "Solop");
+    }
+
+    BOOST_AUTO_TEST_CASE(TEST_SPLITSTRING) {
+        std::string address = "kostas.makedos@gmail.com";
+        std::vector<std::string> v;
+        splitString(address, '.', v);
+        BOOST_CHECK(v[0] == "kostas");
+        BOOST_CHECK(v[1] == "makedos@gmail");
+        BOOST_CHECK(v[2] == "com");
+
+
+    }
 
 BOOST_AUTO_TEST_SUITE_END()

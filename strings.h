@@ -7,6 +7,7 @@
 #ifndef CPP_COOKBOOK_STRINGS_H
 #define CPP_COOKBOOK_STRINGS_H
 #include <string>
+#include <algorithm>
 template <typename T>
 void padString(std::basic_string<T> &str,
                T pad, int size){
@@ -32,5 +33,69 @@ void trimString(std::basic_string<T> &str, T c){
         p++;
     str.erase(p, str.end());
 }
+
+template <typename T>
+void reverseString(std::basic_string<T> &s){
+   std::reverse(s.begin(), s.end());
+}
+
+template <typename T>
+void reverseAndCopyString(std::basic_string<T> s, std::basic_string<T> &r){
+    r.assign(s.rbegin(), s.rend());
+}
+
+
+void splitString(std::string &s, char c, std::vector<std::string> &v);
+
+class StringTokenizer{
+public:
+    StringTokenizer(const std::string &s, const char *delim = NULL):
+    str_(s), count_(-1), begin_(0), end_(0){
+        if (!delim){
+            delim_ = " \f\n\r\t\v";
+        }
+        else {
+            delim_ = delim;
+        }
+        begin_ = str_.find_first_not_of(delim_);
+        end_ = str_.find_first_of(delim_, begin_);
+    }
+    size_t countTokens(){
+        if (count_ >= 0){
+            return count_;
+        }
+        std::string::size_type n = 0;
+        std::string::size_type i = 0;
+        for(;;){
+            if ((i = str_.find_first_not_of(delim_, i) ) == std::string::npos){
+                break;
+            }
+            i = str_.find_first_of(delim_, i+1);
+            n++;
+            if (i == std::string::npos)
+                break;
+            return (count_ = n);
+        }
+    }
+    bool hasMoreTokens() { return begin_ != end_ ;}
+    void nextToken(std::string &s){
+        if (begin_ != std::string::npos && end_ != std::string::npos){
+            s = str_.substr(begin_, end_ - begin_);
+            begin_ = str_.find_first_not_of(delim_, end_);
+            end_ = str_.find_first_of(delim_, begin_);
+        }
+        else if (begin_ != std::string::npos && end_ == std::string::npos){
+            s = str_.substr(begin_, str_.length() - begin_);
+            begin_ = str_.find_first_not_of(delim_, end_);
+        }
+    }
+private:
+    StringTokenizer(){};
+    std::string delim_;
+    std::string str_;
+    int count_;
+    int begin_;
+    int end_;
+};
 
 #endif //CPP_COOKBOOK_STRINGS_H
