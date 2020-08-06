@@ -19,3 +19,14 @@ void splitString(std::string &s, char c, std::vector<std::string> &v){
     }
 
 }
+
+void join_vector(std::vector<std::string> v, const char delim, std::string &s){
+    s.clear();
+    for (std::vector<std::string>::const_iterator i = v.begin(); i != v.end(); ++i){
+        s += *i;
+        if (i != v.end()-1){
+            s += delim;
+        }
+
+    }
+}

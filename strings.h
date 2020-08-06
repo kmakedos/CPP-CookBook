@@ -49,9 +49,9 @@ void splitString(std::string &s, char c, std::vector<std::string> &v);
 
 class StringTokenizer{
 public:
-    StringTokenizer(const std::string &s, const char *delim = NULL):
+    StringTokenizer(const std::string &s, std::string &delim):
     str_(s), count_(-1), begin_(0), end_(0){
-        if (!delim){
+        if (delim.empty()){
             delim_ = " \f\n\r\t\v";
         }
         else {
@@ -74,8 +74,8 @@ public:
             n++;
             if (i == std::string::npos)
                 break;
-            return (count_ = n);
         }
+        return (count_ = n);
     }
     bool hasMoreTokens() { return begin_ != end_ ;}
     void nextToken(std::string &s){
@@ -97,5 +97,23 @@ private:
     int begin_;
     int end_;
 };
+
+
+void join_vector(std::vector<std::string> v, const char delim, std::string &s);
+
+template <typename T>
+size_t count_words(std::basic_string<T> &s, std::basic_string<T> &delim){
+    size_t count = 0;
+    int begin = s.find_first_not_of(delim);
+    int end = s.find_first_of(delim);
+    while (end != std::basic_string<T>::npos){
+        begin = s.find_first_not_of(delim, end);
+        end = s.find_first_of(delim, begin);
+        count++;
+    }
+    return count;
+
+}
+
 
 #endif //CPP_COOKBOOK_STRINGS_H

@@ -64,8 +64,24 @@ BOOST_AUTO_TEST_SUITE(testStrings)
         BOOST_CHECK(v[0] == "kostas");
         BOOST_CHECK(v[1] == "makedos@gmail");
         BOOST_CHECK(v[2] == "com");
-
-
     }
-
+    BOOST_AUTO_TEST_CASE(TEST_STRINGTOKENIZER) {
+        std::string address = "kostas.makedos@gmail.com";
+        std::string delim = ".";
+        std::string next_token;
+        StringTokenizer *strtoken = new StringTokenizer(address, delim);
+        BOOST_CHECK_EQUAL(strtoken->countTokens(), 3);
+        BOOST_CHECK_EQUAL(strtoken->hasMoreTokens(), true);
+        std::vector<std::string> v;
+        while (strtoken->hasMoreTokens()){
+            strtoken->nextToken(next_token);
+            v.push_back(next_token);
+        }
+        std::string address2;
+        join_vector(v, '.', address2);
+        BOOST_CHECK(address == address2);
+        std::wstring sor = L"ΕλαμΕλαμμαλαλΕρε μαλαE";
+        std::wstring isordelim = L"Ε";
+        BOOST_CHECK_EQUAL(count_words(sor, isordelim), 3);
+    }
 BOOST_AUTO_TEST_SUITE_END()
