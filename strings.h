@@ -116,4 +116,14 @@ size_t count_words(std::basic_string<T> &s, std::basic_string<T> &delim){
 }
 
 
+template <typename T>
+void remove_string(std::basic_string<T> &s, std::basic_string<T> &t){
+    int n = -1; // We put -1 here to start from 0
+    while ((n = s.find(t, n+1)) > 0){
+        s.erase(n, t.length());
+    }
+
+}
+
+
 #endif //CPP_COOKBOOK_STRINGS_H

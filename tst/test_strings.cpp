@@ -84,4 +84,11 @@ BOOST_AUTO_TEST_SUITE(testStrings)
         std::wstring isordelim = L"Ε";
         BOOST_CHECK_EQUAL(count_words(sor, isordelim), 3);
     }
+    BOOST_AUTO_TEST_CASE(TEST_STRINGREMOVE) {
+        std::string s = "NipsonAnomimataMiMonanopis";
+        std::string t = "o";
+        remove_string(s,t);
+        BOOST_CHECK(s == "NipsnAnmimataMiMnanpis");
+    }
+
 BOOST_AUTO_TEST_SUITE_END()
