@@ -5,6 +5,7 @@
 //
 #include <iostream>
 #include <vector>
+#include <cctype>
 #include "strings.h"
 void splitString(std::string &s, char c, std::vector<std::string> &v){
     std::string::size_type i = 0;
@@ -29,4 +30,44 @@ void join_vector(std::vector<std::string> v, const char delim, std::string &s){
         }
 
     }
+}
+
+void to_lower(std::string &s){
+    for (std::string::iterator p = s.begin(); p != s.end(); ++p){
+        *p = tolower(*p);
+    }
+}
+void to_upper(std::string &s){
+    for (std::string::iterator p = s.begin(); p != s.end(); ++p){
+        *p = toupper(*p);
+    }
+}
+
+bool str_equal(std::string &lh, std::string &rh){
+    std::string lh_copy = lh;
+    std::string rh_copy =rh;
+    to_lower(lh_copy);
+    to_lower(rh_copy);
+    return lh_copy == rh_copy;
+}
+
+int str_search(std::string &needle, std::string &haystack){
+    int index = 0;
+    if ((needle.length() > haystack.length()) || needle.length() == 0 || haystack.length() == 0){
+        return -1;
+    }
+    std::string::iterator n = needle.begin();
+    for (std::string::iterator h = haystack.begin(); h!= haystack.end(); ++h) {
+        while ((*n == *h) && (n != needle.end())) {
+            ++n;
+            ++h;
+            ++index;
+            std::cout << index << std::endl;
+        }
+        if (n == needle.end()) {
+            return index;
+        }
+    }
+    return -1;
+
 }

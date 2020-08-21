@@ -126,4 +126,11 @@ void remove_string(std::basic_string<T> &s, std::basic_string<T> &t){
 }
 
 
+void to_lower(std::string &s);
+void to_upper(std::string &s);
+
+bool str_equal(std::string &lh, std::string &rh);
+
+int str_search(std::string &needle, std::string &haystack);
+
 #endif //CPP_COOKBOOK_STRINGS_H

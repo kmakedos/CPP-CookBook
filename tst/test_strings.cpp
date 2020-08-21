@@ -90,5 +90,32 @@ BOOST_AUTO_TEST_SUITE(testStrings)
         remove_string(s,t);
         BOOST_CHECK(s == "NipsnAnmimataMiMnanpis");
     }
+    BOOST_AUTO_TEST_CASE(TEST_STRINGCASE) {
+        std::string s = "NipsonAnomimataMiMonanopis";
+        std::string ls;
+        std::string us;
+        to_lower(s);
+        BOOST_CHECK(s == "nipsonanomimatamimonanopis");
+        to_upper(s);
+        BOOST_CHECK(s == "NIPSONANOMIMATAMIMONANOPIS");
+    }
+    BOOST_AUTO_TEST_CASE(TEST_STRINGCOMP) {
+        std::string cat = "cAT";
+        std::string dog = "Dog";
+        std::string cat2 = "CAT";
+        std::string dog2 = "DOgg";
+
+        BOOST_CHECK(str_equal(cat, cat2) == true);
+        BOOST_CHECK(str_equal(dog, dog2) == false);
+    }
+    BOOST_AUTO_TEST_CASE(TEST_STRINGSEARCH) {
+        std::string cat = "CAT";
+        std::string haystack1 = "The little jump fox jumped over the lazy dog's-cat";
+        std::string haystack2 = "Curiosity killed the cats and the dogs were sleeping inside CaTroom: CAttter";
+        std::string haystack3 = "There is no c at and no d og. CArs and Cast and C A T. Ca tr";
+        BOOST_CHECK(str_search(cat, haystack1) == 1 );
+        BOOST_CHECK(str_search(cat, haystack2) == 2);
+        BOOST_CHECK(str_search(cat, haystack3) == 3);
+    }
 
 BOOST_AUTO_TEST_SUITE_END()
