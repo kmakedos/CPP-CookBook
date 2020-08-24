@@ -110,12 +110,12 @@ BOOST_AUTO_TEST_SUITE(testStrings)
     }
     BOOST_AUTO_TEST_CASE(TEST_STRINGSEARCH) {
         std::string cat = "CAT";
-        std::string haystack1 = "The little jump fox jumped over the lazy dog's-cat";
-        std::string haystack2 = "Curiosity killed the cats and the dogs were sleeping inside CaTroom: CAttter";
-        std::string haystack3 = "There is no c at and no d og. CArs and Cast and C A T. Ca tr";
-        BOOST_CHECK(str_search(cat, haystack1) == 1 );
-        BOOST_CHECK(str_search(cat, haystack2) == 2);
-        BOOST_CHECK(str_search(cat, haystack3) == 3);
+        std::string haystack1 = "dog's-CAT";
+        std::string haystack2 = "killed the cats inside CaTroom: CATtter";
+        std::string haystack3 = "No c at and no dog. CArs and Cast and C A T. Ca tr";
+        BOOST_CHECK(str_search(cat, haystack1) == 7 );
+        BOOST_CHECK(str_search(cat, haystack2) == 32);
+        BOOST_CHECK(str_search(cat, haystack3) == -1);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

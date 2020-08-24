@@ -58,15 +58,16 @@ int str_search(std::string &needle, std::string &haystack){
     }
     std::string::iterator n = needle.begin();
     for (std::string::iterator h = haystack.begin(); h!= haystack.end(); ++h) {
+        ++index;
         while ((*n == *h) && (n != needle.end())) {
             ++n;
             ++h;
-            ++index;
-            std::cout << index << std::endl;
         }
         if (n == needle.end()) {
             return index;
         }
+        else
+            n = needle.begin();
     }
     return -1;
 
