@@ -8,6 +8,8 @@
 #define CPP_COOKBOOK_STRINGS_H
 #include <string>
 #include <algorithm>
+#include <istream>
+#include <ostream>
 template <typename T>
 void padString(std::basic_string<T> &str,
                T pad, int size){
@@ -132,5 +134,9 @@ void to_upper(std::string &s);
 bool str_equal(std::string &lh, std::string &rh);
 
 int str_search(std::string &needle, std::string &haystack);
+
+void tabs_to_spaces(std::istream &in, std::ostream &out);
+
+void spaces_to_tabs(std::istream &in, std::ostream &out);
 
 #endif //CPP_COOKBOOK_STRINGS_H

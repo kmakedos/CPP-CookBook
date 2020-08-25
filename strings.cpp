@@ -6,6 +6,8 @@
 #include <iostream>
 #include <vector>
 #include <cctype>
+#include <istream>
+#include <ostream>
 #include "strings.h"
 void splitString(std::string &s, char c, std::vector<std::string> &v){
     std::string::size_type i = 0;
@@ -71,4 +73,36 @@ int str_search(std::string &needle, std::string &haystack){
     }
     return -1;
 
+}
+
+
+void tabs_to_spaces(std::istream &in, std::ostream &out){
+    char c;
+    while (in.get(c)){
+        if (c == '\t'){
+            for (short i = 0; i < 4; i++)
+                out.put(' ');
+        }
+        else {
+            out.put(c);
+        }
+    }
+}
+
+void spaces_to_tabs(std::istream &in, std::ostream &out){
+    char c;
+    int num_spaces = 4;
+    int counted = 0;
+    while (in.get(c)){
+        if ((c == ' ') && (counted == num_spaces)){
+            out.put('\t');
+        }
+        if (c != ' '){
+            if (counted > 0){
+                for (int i=0; i < counted; i++) out.put(' ');
+            }
+            out.put(c);
+            counted = 0;
+        }
+    }
 }
