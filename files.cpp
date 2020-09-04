@@ -61,6 +61,7 @@ void count(std::istream &in){
     int previous = 0;
 
     while (in.get(c)){
+        ++chars;
         if (c == '\n'){
             lines++;
         }
@@ -73,4 +74,5 @@ void count(std::istream &in){
     }
     std::cout << "Words:" << words << std::endl;
     std::cout << "Lines:" << lines << std::endl;
+    std::cout << "Chars:" << chars << std::endl;
 }
