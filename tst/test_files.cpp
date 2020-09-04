@@ -9,7 +9,7 @@
 #include <ostream>
 #include <fstream>
 #include <boost/test/unit_test.hpp>
-#include "../strings.h"
+#include "../files.h"
 
 BOOST_AUTO_TEST_SUITE(testFiles)
 
@@ -30,9 +30,27 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         if (!in || !out){
             exit(EXIT_FAILURE);
         }
-        tabs_to_spaces(in, out);
+        spaces_to_tabs(in, out);
         in.close();
         out.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_WRAP_FILES) {
+        std::ifstream in("test_file02.txt");
+        std::ofstream out("test_file02_result01.txt");
+        if (!in || !out){
+            exit(EXIT_FAILURE);
+        }
+        wrap_lines(in, out);
+        in.close();
+        out.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_COUNT_WORDS_CHARS_LINES) {
+        std::ifstream in("test_file02.txt");
+        if (!in){
+            exit(EXIT_FAILURE);
+        }
+        count(in);
+        in.close();
     }
 
 BOOST_AUTO_TEST_SUITE_END()

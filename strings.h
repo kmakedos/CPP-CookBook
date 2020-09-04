@@ -135,8 +135,5 @@ bool str_equal(std::string &lh, std::string &rh);
 
 int str_search(std::string &needle, std::string &haystack);
 
-void tabs_to_spaces(std::istream &in, std::ostream &out);
-
-void spaces_to_tabs(std::istream &in, std::ostream &out);
 
 #endif //CPP_COOKBOOK_STRINGS_H
