@@ -98,3 +98,20 @@ void add_margins(std::istream &in, std::ostream &out, int left_pad, int width){
        out << line << std::endl;
     }
 }
+
+void justify(std::istream &in, std::ostream &out, int width, bool left){
+    std::string line;
+    int length = 0;
+    if (left) out.setf(std::ios_base::left);
+    else out.setf(std::ios_base::right);
+    while (getline(in, line, '\n')){
+        out.width(width);
+        out << line << std::endl;
+    }
+}
+void compress_w(std::istream &in, std::ostream &out){
+    std::string word;
+    while (in >> word){
+        out << word << " ";
+    }
+}

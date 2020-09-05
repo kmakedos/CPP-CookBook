@@ -72,5 +72,35 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         in2.close();
         out.close();
     }
+    BOOST_AUTO_TEST_CASE(TEST_JUSTIFY) {
+        std::ifstream in("test_file02.txt");
+        std::ofstream tmp("test_file02_fixed_width.txt");
+        if (!in || !tmp) exit(EXIT_FAILURE);
+        wrap_lines(in, tmp, 40);
+        in.close();
+        tmp.close();
+        std::ifstream in2("test_file02_fixed_width.txt");
+        std::ofstream out("test_file02_result04.txt");
+        if (!in2 || !out) exit(EXIT_FAILURE);
+        justify(in2, out, 40, true );
+        in2.close();
+        out.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_COMPRESS_WHITESPACE) {
+        std::ifstream in("test_file02.txt");
+        std::ofstream out("test_file02_result05.txt");
+        if (!in || !out) exit(EXIT_FAILURE);
+        compress_w(in, out);
+        in.close();
+        out.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_AUTOCORRECT) {
+        std::ifstream in("test_file02.txt");
+        std::ofstream out("test_file02_result05.txt");
+        if (!in || !out) exit(EXIT_FAILURE);
+        compress_w(in, out);
+        in.close();
+        out.close();
+    }
 
 BOOST_AUTO_TEST_SUITE_END()
