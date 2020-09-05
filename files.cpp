@@ -1,7 +1,7 @@
 //
 // Created by kostas on 4/9/20.
 //
-
+#include <map>
 #include "files.h"
 void tabs_to_spaces(std::istream &in, std::ostream &out){
     char c;
@@ -35,7 +35,7 @@ void spaces_to_tabs(std::istream &in, std::ostream &out){
 }
 
 
-void wrap_lines(std::istream &in, std::ostream &out){
+void wrap_lines(std::istream &in, std::ostream &out, int width){
     char c;
     int counter = 0;
     bool lock = false;
@@ -43,7 +43,7 @@ void wrap_lines(std::istream &in, std::ostream &out){
         // We lock if we are in the middle of a word
         lock = (isspace(c) == 0);
         ++counter;
-        if ((counter >= 80) && ! lock){
+        if ((counter >= width) && ! lock){
             out << std::endl;
             counter = 0;
         }
@@ -52,7 +52,7 @@ void wrap_lines(std::istream &in, std::ostream &out){
 
 }
 
-void count(std::istream &in){
+void count(std::istream &in, std::ostream &out){
     char c;
     int lines = 0;
     int chars = 0;
@@ -72,7 +72,29 @@ void count(std::istream &in){
         previous = spaces;
 
     }
-    std::cout << "Words:" << words << std::endl;
-    std::cout << "Lines:" << lines << std::endl;
-    std::cout << "Chars:" << chars << std::endl;
+
+    out << "Words:" << words << std::endl;
+    out << "Lines:" << lines << std::endl;
+    out << "Chars:" << chars << std::endl;
+}
+void count_words(std::istream &in, std::ostream &out){
+    std::map<std::string, int> StringMap;
+    std::string s;
+    while (in >> s){
+        ++StringMap[s];
+    }
+    for (auto it = StringMap.begin(); it!= StringMap.end(); ++it){
+        out << it->first << ":" << it->second << std::endl;
+    }
+}
+void add_margins(std::istream &in, std::ostream &out, int left_pad, int width){
+    std::string line;
+    int length = 0;
+    while (getline(in, line, '\n')){
+       length = line.length();
+       if (length <= (width - left_pad)){
+           for (size_t t= 0; t < left_pad; t++) out << " ";
+       }
+       out << line << std::endl;
+    }
 }

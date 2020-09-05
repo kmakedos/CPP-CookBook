@@ -49,8 +49,28 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         if (!in){
             exit(EXIT_FAILURE);
         }
-        count(in);
+        count(in, std::cout);
         in.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_COUNT_WORD_INSTANCES) {
+        std::ifstream in("test_file02.txt");
+        if (!in) exit(EXIT_FAILURE);
+        count_words(in, std::cout);
+        in.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_ADD_MARGINS) {
+        std::ifstream in("test_file02.txt");
+        std::ofstream tmp("test_file02_corrected.txt");
+        if (!in || !tmp) exit(EXIT_FAILURE);
+        wrap_lines(in, tmp, 70);
+        in.close();
+        tmp.close();
+        std::ifstream in2("test_file02_corrected.txt");
+        std::ofstream out("test_file02_result03.txt");
+        if (!in2 || !out) exit(EXIT_FAILURE);
+        add_margins(in2, out, 10, 80);
+        in2.close();
+        out.close();
     }
 
 BOOST_AUTO_TEST_SUITE_END()
