@@ -2,7 +2,9 @@
 // Created by kostas on 4/9/20.
 //
 #include <map>
+#include <vector>
 #include "files.h"
+#include "strings.h"
 void tabs_to_spaces(std::istream &in, std::ostream &out){
     char c;
     while (in.get(c)){
@@ -113,5 +115,29 @@ void compress_w(std::istream &in, std::ostream &out){
     std::string word;
     while (in >> word){
         out << word << " ";
+    }
+}
+void autocorrect(std::istream &in, std::ostream &out, std::map<std::string, std::string> &dictionary){
+    std::string word;
+    while (in >> word){
+        auto p = dictionary.find(word);
+        if (p != dictionary.end()){
+            out << p->second;
+        }
+        else{
+            out << word;
+        }
+
+    }
+}
+void read_csv(std::istream &in, std::ostream &out){
+    std::string line;
+    std::vector<std::string> records;
+    while (getline(in, line )){
+        splitString(line, ',', records);
+        for (auto it = records.begin(); it != records.end(); ++it){
+            out << *it << " : ";
+        }
+        out << std::endl;
     }
 }

@@ -8,6 +8,7 @@
 #include <istream>
 #include <ostream>
 #include <fstream>
+#include <map>
 #include <boost/test/unit_test.hpp>
 #include "../files.h"
 
@@ -95,10 +96,25 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         out.close();
     }
     BOOST_AUTO_TEST_CASE(TEST_AUTOCORRECT) {
-        std::ifstream in("test_file02.txt");
-        std::ofstream out("test_file02_result05.txt");
+        std::map<std::string, std::string> dictionary;
+        dictionary["thsi"] = "this";
+        dictionary["simlpe"] = "simple";
+        dictionary["pelecan"] = "pelican";
+        dictionary["anwser"] = "answer";
+        dictionary["monney"] = "money";
+        dictionary["hopse"] = "hopes";
+        std::ifstream in("test_file03.txt");
+        std::ofstream out("test_file03_result01.txt");
         if (!in || !out) exit(EXIT_FAILURE);
-        compress_w(in, out);
+        autocorrect(in, out, dictionary);
+        in.close();
+        out.close();
+    }
+    BOOST_AUTO_TEST_CASE(TEST_READ_CSV) {
+        std::ifstream in("test_file04.csv");
+        std::ofstream out("test_file04_result01.txt");
+        if (!in || !out) exit(EXIT_FAILURE);
+        read_csv(in, out);
         in.close();
         out.close();
     }
