@@ -83,6 +83,7 @@ BOOST_AUTO_TEST_SUITE(testStrings)
         std::wstring sor = L"ΕλαμΕλαμμαλαλΕρε μαλαE";
         std::wstring isordelim = L"Ε";
         BOOST_CHECK_EQUAL(count_words(sor, isordelim), 3);
+        delete strtoken;
     }
     BOOST_AUTO_TEST_CASE(TEST_STRINGREMOVE) {
         std::string s = "NipsonAnomimataMiMonanopis";
