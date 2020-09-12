@@ -5,6 +5,7 @@
 //
 
 #define BOOST_TEST_DYN_LINK
+#include <list>
 #include <boost/test/unit_test.hpp>
 #include "../vectors.h"
 
@@ -34,5 +35,20 @@ BOOST_AUTO_TEST_SUITE(testVectors)
         }
         p.clear();
     }
+    BOOST_AUTO_TEST_CASE(TEST_LIST) {
+       std::list<std::string> a,b;
+       a.push_back("alpha");
+       a.push_back("beta");
+       a.push_back("gamma");
+       a.push_front("delta");
+       b.push_back("theta");
+       b.push_front("zeta");
+       a.merge(b);
+       print_list(a);
+       std::cout << std::endl;
+       a.sort();
+       print_list(a);
 
+
+    }
 BOOST_AUTO_TEST_SUITE_END()

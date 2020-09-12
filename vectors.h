@@ -6,6 +6,15 @@
 #define CPP_COOKBOOK_VECTORS_H
 #include <iostream>
 #include <vector>
+#include<list>
+
+
+template <typename T>
+void print_list(const std::list<T> &lst){
+    for (auto it=lst.begin(); it != lst.end(); ++it){
+        std::cout << *it << std::endl;
+    }
+}
 template <typename T>
 void print_vector(const std::vector<T> &vec){
     std::cout << "{ ";
