@@ -7,6 +7,8 @@
 #define BOOST_TEST_DYN_LINK
 #include <list>
 #include <boost/test/unit_test.hpp>
+#include <vector>
+#include <algorithm>
 #include "../vectors.h"
 
 BOOST_AUTO_TEST_SUITE(testVectors)
@@ -48,6 +50,14 @@ BOOST_AUTO_TEST_SUITE(testVectors)
        std::cout << std::endl;
        a.sort();
        print_list(a);
+    }
+   BOOST_AUTO_TEST_CASE(TEST_COMPARE_RANGE) {
+        std::vector<std::string> v1,v2;
+        v1.push_back("A-str");
+        v1.push_back("B-str");
+        v2.push_back("C-str");
+        v2.push_back("D-str");
+        BOOST_CHECK_EQUAL(false, std::equal(v1.begin(), v1.end(), v2.begin()));
 
 
     }

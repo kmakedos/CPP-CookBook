@@ -17,8 +17,46 @@ public:
     }
 };
 
+
+class C{
+private:
+    int active;
+public:
+    C(int activate):active(activate){}
+    int is_idle(){
+        return active;
+    }
+};
+
+
+
+struct IdleConn :
+public std::unary_function<class C, bool>{
+    IdleConn(){}
+    bool operator()(C &c){
+       if (c.is_idle() == 0) {
+           return true;
+       }
+       else {
+           return false;
+       }
+    }
+}idle;
+
+struct MyFunct{
+private:
+    int internal;
+public:
+    MyFunct(int x): internal(x){}
+    int operator()(int x) const {
+        return internal + x;
+
+    }
+};
+
+
 int main(){
-    std::vector<TS> pp(100);
+/*    std::vector<TS> pp(100);
     std::cout << "pp Size: " << pp.size() << std::endl;
     std::cout << "pp capacity: " << pp.capacity() << std::endl;
     TS ss = TS();
@@ -29,4 +67,31 @@ int main(){
     pp.emplace_back(TS(beta));
     std::cout << "pp Size: " << pp.size() << std::endl;
     std::cout << "pp capacity: " << pp.capacity() << std::endl;
+    std::vector<std::string> x;
+    std::vector<int> int_vec;
+    int_vec.push_back(3);
+    int_vec.push_back(4);
+    int_vec.push_back(5);
+    int_vec.push_back(1);
+
+    std::vector<int> out_vec(int_vec.size());
+    MyFunct operate(5);
+    std::transform(int_vec.begin(), int_vec.end(), out_vec.begin(), MyFunct(10));
+    for (int & it : out_vec){
+        std::cout << it << std::endl;
+    }*/
+    std::vector<C> connections;
+    connections.emplace_back(C(1));
+    connections.emplace_back(C(2));
+    connections.emplace_back(C(0));
+    connections.emplace_back(C(4));
+    connections.emplace_back(C(5));
+    connections.emplace_back(C(0));
+    connections.emplace_back(C(7));
+    connections.erase(std::remove_if(connections.begin(), connections.end(), idle), connections.end());
+    for (auto & connection : connections){
+        std::cout << connection.is_idle() << std::endl;
+    }
+
+
 }
