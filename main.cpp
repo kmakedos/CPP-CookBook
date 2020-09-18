@@ -80,7 +80,7 @@ int main(){
     for (int & it : out_vec){
         std::cout << it << std::endl;
     }*/
-    std::vector<C> connections;
+/*    std::vector<C> connections;
     connections.emplace_back(C(1));
     connections.emplace_back(C(2));
     connections.emplace_back(C(0));
@@ -92,6 +92,16 @@ int main(){
     for (auto & connection : connections){
         std::cout << connection.is_idle() << std::endl;
     }
-
+*/
+    std::cout << "Enter a series of strings:" ;
+    std::istream_iterator<std::string> start(std::cin);
+    std::istream_iterator<std::string> end;
+    std::vector<std::string> v(start, end);
+   /* std::vector<std::string>::iterator p =
+            std::partition(v.begin(), v.end(),
+                           std::bind2nd(std::less<std::string>(), "kol"));*/
+    for (auto it = v.begin(); it!= v.end(); ++it ){
+        std::cout << *it << std::endl;
+    }
 
 }

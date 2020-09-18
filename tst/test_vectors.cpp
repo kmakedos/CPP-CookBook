@@ -58,7 +58,23 @@ BOOST_AUTO_TEST_SUITE(testVectors)
         v2.push_back("C-str");
         v2.push_back("D-str");
         BOOST_CHECK_EQUAL(false, std::equal(v1.begin(), v1.end(), v2.begin()));
+    }
+    BOOST_AUTO_TEST_CASE(TEST_MERGE) {
+        std::vector<std::string> v1,v2,v3;
+        std::vector<std::string> v4 = {"A", "B", "C", "D" ,"E", "F"};
+        v1.push_back("A");
+        v1.push_back("B");
+        v1.push_back("E");
+        v2.push_back("C");
+        v2.push_back("D");
+        v2.push_back("F");
+        std::merge(v1.begin(), v1.end(),
+                   v2.begin(), v2.end(),
+                   std::back_inserter<std::vector<std::string>>(v3));
+        BOOST_CHECK(v3 == v4);
 
+    }
+    BOOST_AUTO_TEST_CASE(TEST_PARTITION) {
 
     }
 BOOST_AUTO_TEST_SUITE_END()

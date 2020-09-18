@@ -19,6 +19,7 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         std::ifstream in("test_file01.txt");
         std::ofstream out("test_file01_result01.txt");
         if (!in || !out){
+            std::cerr << "test_file01 or test_file01_result01 not found" << std::endl;
             exit(EXIT_FAILURE);
         }
         tabs_to_spaces(in, out);
@@ -29,6 +30,7 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         std::ifstream in("test_file01_result01.txt");
         std::ofstream out("test_file01_result02.txt");
         if (!in || !out){
+            std::cerr << "test_files not found" << std::endl;
             exit(EXIT_FAILURE);
         }
         spaces_to_tabs(in, out);
@@ -39,6 +41,7 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         std::ifstream in("test_file02.txt");
         std::ofstream out("test_file02_result01.txt");
         if (!in || !out){
+            std::cerr << "test_files not found" << std::endl;
             exit(EXIT_FAILURE);
         }
         wrap_lines(in, out);
@@ -48,6 +51,7 @@ BOOST_AUTO_TEST_SUITE(testFiles)
     BOOST_AUTO_TEST_CASE(TEST_COUNT_WORDS_CHARS_LINES) {
         std::ifstream in("test_file02.txt");
         if (!in){
+            std::cerr << "test_files not found" << std::endl;
             exit(EXIT_FAILURE);
         }
         count(in, std::cout);
@@ -55,14 +59,20 @@ BOOST_AUTO_TEST_SUITE(testFiles)
     }
     BOOST_AUTO_TEST_CASE(TEST_COUNT_WORD_INSTANCES) {
         std::ifstream in("test_file02.txt");
-        if (!in) exit(EXIT_FAILURE);
+        if (!in) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         count_words(in, std::cout);
         in.close();
     }
     BOOST_AUTO_TEST_CASE(TEST_ADD_MARGINS) {
         std::ifstream in("test_file02.txt");
         std::ofstream tmp("test_file02_corrected.txt");
-        if (!in || !tmp) exit(EXIT_FAILURE);
+        if (!in || !tmp) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         wrap_lines(in, tmp, 70);
         in.close();
         tmp.close();
@@ -76,7 +86,10 @@ BOOST_AUTO_TEST_SUITE(testFiles)
     BOOST_AUTO_TEST_CASE(TEST_JUSTIFY) {
         std::ifstream in("test_file02.txt");
         std::ofstream tmp("test_file02_fixed_width.txt");
-        if (!in || !tmp) exit(EXIT_FAILURE);
+        if (!in || !tmp) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         wrap_lines(in, tmp, 40);
         in.close();
         tmp.close();
@@ -90,7 +103,10 @@ BOOST_AUTO_TEST_SUITE(testFiles)
     BOOST_AUTO_TEST_CASE(TEST_COMPRESS_WHITESPACE) {
         std::ifstream in("test_file02.txt");
         std::ofstream out("test_file02_result05.txt");
-        if (!in || !out) exit(EXIT_FAILURE);
+        if (!in || !out) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         compress_w(in, out);
         in.close();
         out.close();
@@ -105,7 +121,10 @@ BOOST_AUTO_TEST_SUITE(testFiles)
         dictionary["hopse"] = "hopes";
         std::ifstream in("test_file03.txt");
         std::ofstream out("test_file03_result01.txt");
-        if (!in || !out) exit(EXIT_FAILURE);
+        if (!in || !out) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         autocorrect(in, out, dictionary);
         in.close();
         out.close();
@@ -113,7 +132,10 @@ BOOST_AUTO_TEST_SUITE(testFiles)
     BOOST_AUTO_TEST_CASE(TEST_READ_CSV) {
         std::ifstream in("test_file04.csv");
         std::ofstream out("test_file04_result01.txt");
-        if (!in || !out) exit(EXIT_FAILURE);
+        if (!in || !out) {
+            std::cerr << "test_files not found" << std::endl;
+            exit(EXIT_FAILURE);
+        }
         read_csv(in, out);
         in.close();
         out.close();
