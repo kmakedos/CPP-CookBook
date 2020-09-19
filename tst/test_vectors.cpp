@@ -75,6 +75,11 @@ BOOST_AUTO_TEST_SUITE(testVectors)
 
     }
     BOOST_AUTO_TEST_CASE(TEST_PARTITION) {
+        std::vector<std::string> v1,v2;
+        v1 = {"alpha", "beta", "gamma", "seta"};
+        auto p = std::partition(v1.begin(), v1.end(), std::bind2nd(std::less<std::string>(), "f"));
+        BOOST_CHECK(*p == "gamma");
+
 
     }
 BOOST_AUTO_TEST_SUITE_END()
