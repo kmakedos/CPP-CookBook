@@ -79,7 +79,31 @@ BOOST_AUTO_TEST_SUITE(testVectors)
         v1 = {"alpha", "beta", "gamma", "seta"};
         auto p = std::partition(v1.begin(), v1.end(), std::bind2nd(std::less<std::string>(), "f"));
         BOOST_CHECK(*p == "gamma");
-
+    }
+    BOOST_AUTO_TEST_CASE(TEST_SET_OPERATIONS) {
+        std::vector<std::string> v1,v2,v3,v4,v5,v6;
+        v1 = {"a","b","c","d","e"};
+        v2 = {"b", "c", "g"};
+        std::set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), std::back_inserter(v3));
+        std::set_symmetric_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), std::back_inserter(v4));
+        std::set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), std::back_inserter(v5));
+        std::set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), std::back_inserter(v6));
+        std::cout << "Difference:" << std::endl;
+        for(auto it: v3){
+            std::cout <<  it << std::endl;
+        }
+        std::cout << "Symmmetric Difference:" << std::endl;
+        for(auto it: v4){
+            std::cout <<  it << std::endl;
+        }
+        std::cout << "Union:" << std::endl;
+        for(auto it: v5){
+            std::cout <<  it << std::endl;
+        }
+        std::cout << "Intersection:" << std::endl;
+        for(auto it: v6){
+            std::cout <<  it << std::endl;
+        }
 
     }
 BOOST_AUTO_TEST_SUITE_END()
