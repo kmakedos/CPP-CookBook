@@ -15,21 +15,6 @@
 BOOST_AUTO_TEST_SUITE(testClasses)
 
     BOOST_AUTO_TEST_CASE(TEST_FACTORY_PATTERN){
-    class Session{};
-    class SessionFactory{
-    private:
-    public:
-        Session Create(){
-            Session s;
-            return s;
-        }
-        Session* CreatePtr(){
-            return new Session();
-        }
-        void Create(Session* &p){
-            p = new Session();
-        }
-    };
 
         SessionFactory sf;
         Session ms = sf.Create();
@@ -77,8 +62,40 @@ BOOST_AUTO_TEST_SUITE(testClasses)
         BOOST_CHECK(s1==s2);
         Single *s3(s2);
         BOOST_CHECK(s3==s2);
+    }
 
+    BOOST_AUTO_TEST_CASE(TEST_VIRTUAL){
+        std::vector<Animal*> animals;
+        animals.emplace_back(new Dog());
+        animals.emplace_back(new Cat());
+        for (auto &it: animals){
+           it->walk();
+           it->talk();
+        }
+    }
+
+    BOOST_AUTO_TEST_CASE(TEST_TEMPLATED_FACTORY){
+        GenericFactory<Dog> gfd;
+        GenericFactory<Cat> gfc;
+        std::vector<Animal*> animals;
+        for (int i = 0; i < 3; i++ ){
+            animals.emplace_back(gfd.createPtr());
+            animals.emplace_back(gfc.createPtr());
+        }
+        for (auto it:animals){
+            it->walk();
+            it->talk();
+        }
 
     }
 
+    BOOST_AUTO_TEST_CASE(TEST_OPERATORS_POST_PRE_FIX){
+    // Simulating pre and postfix
+        Integar i, j;
+        std::cout << ++i << std::endl;
+        std::cout << i++ << std::endl;
+        std::cout << i << std::endl;
+        std::cout << i+j << std::endl;
+
+    }
 BOOST_AUTO_TEST_SUITE_END()
