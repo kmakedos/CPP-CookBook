@@ -29,7 +29,16 @@ BOOST_AUTO_TEST_SUITE(testExceptions)
     BOOST_AUTO_TEST_CASE(TEST_SAFE_CLASS){
 
         BOOST_CHECK_NO_THROW(Machine car = Machine(1,2));
+        MachineExec c = MachineExec(-2);
 
     }
+// In general all points where an exception may occur, should be handled first.
+// Operators will never throw, and destructors should never throw
+// Any other function can throw...
+// To create safe copy constructors, or initiliazers you should try to just copy
+// internal components using simple copy commands and swaps
+// We swap non-primitive members first
+
+
 
 BOOST_AUTO_TEST_SUITE_END()

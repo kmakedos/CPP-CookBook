@@ -49,4 +49,16 @@ private:
     SafeDevice* dev2;
 };
 
+
+class MachineExec{
+public:
+    MachineExec(int no)
+        try : myno(no)     {}
+        catch (std::runtime_error &e) {
+            std::cerr << "Negative no" << std::endl;
+        }
+private:
+    int myno;
+};
+
 #endif //CPP_COOKBOOK_EXCEPTIONS_H
