@@ -1,5 +1,5 @@
 set (Boost_USE_STATIC_LIBS OFF)
-find_package (Boost REQUIRED COMPONENTS unit_test_framework)
+find_package (Boost REQUIRED COMPONENTS unit_test_framework system filesystem)
 include_directories (${Boost_INCLUDE_DIRS})
 
 add_executable (tests_run test_numbers.cpp test_strings.cpp test_files.cpp test_vectors.cpp test_maps.cpp test_classes.cpp test_exceptions.cpp test_streams_files.cpp)
