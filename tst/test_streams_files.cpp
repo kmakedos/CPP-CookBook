@@ -97,6 +97,7 @@ BOOST_AUTO_TEST_SUITE(testStreamsFiles)
         for (boost::filesystem::directory_iterator it(full_path); it != end; ++it){
             std::cout << it->path() << std::endl;
         }
-}
+
+    }
 
 BOOST_AUTO_TEST_SUITE_END()
