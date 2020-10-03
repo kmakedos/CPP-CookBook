@@ -30,5 +30,32 @@ void locker(){
         std::cout << "Error: " << e.what() << std::endl;
     }
 }
+void hello(){
+    std::cout << "Hello concurrent world\n";
+}
 
+void hello_msg(std::string msg){
+    std::cout << msg << std::endl;
+}
+
+void test_one(){
+    std::thread t1(hello);
+    t1.join();
+    std::thread t2(hello_msg, "Hello detached");
+    t2.detach();
+    Generic g1;
+    std::string s = "Passing data";
+    std::thread t3(&Generic::print, &g1, std::ref(s));
+    t3.join();
+
+}
+void dummy01(){
+    std::cout << "Dummy01" << std::endl;
+}
+void dummy02(){
+    std::cout << "Dummy02" << std::endl;
+}
+void dummy03(){
+    std::cout << "Dummy03" << std::endl;
+}
 

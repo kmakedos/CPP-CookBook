@@ -5,6 +5,7 @@
 #ifndef CPP_COOKBOOK_THREADS_H
 #define CPP_COOKBOOK_THREADS_H
 #include <vector>
+#include <thread>
 #include <iostream>
 #include <numeric>
 #include <ctime>
@@ -56,33 +57,24 @@ private:
 
 void locker();
 
-template <typename T>
-class PriorityQueue{
+
+class Generic{
+private:
+    std::string _msg;
 public:
-    PriorityQueue(){}
-    ~PriorityQueue(){}
-    void enqueue(const T& x){
-        mutex_.lock_shared();
-        list_.push_back(x);
-        mutex_.unlock_shared();
-    }
-    T dequeue(){
-        mutex_.lock_shared();
-        T tmp = list_.front();
-        list_.pop_front();
-        mutex_.unlock_shared();
-        return tmp;
-    }
-    T read_front(){
-        mutex_.try_lock_shared();
-        T tmp = list_.front();
-        mutex_.unlock_shared();
-        return tmp;
+    Generic():_msg("Empty"){}
+    void print(std::string &msg){
+        std::cout << msg << std::endl;
     }
 
-private:
-    boost::shared_mutex mutex_;
-    std::list<T> list_;
+    Generic(Generic &)=delete;
+    Generic& operator=(Generic&)=delete;
 };
+void test_one();
+
+void dummy01();
+void dummy02();
+void dummy03();
+
 
 #endif //CPP_COOKBOOK_THREADS_H
